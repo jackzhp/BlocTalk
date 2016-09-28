@@ -7,10 +7,14 @@
 //
 
 #import "ConversationCollectionViewController.h"
+#import "ConversationViewCell.h"
+#import "User.h"
+#import "MPCHandler.h"
 
 @interface ConversationCollectionViewController ()
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButtonItem;
+@property (nonatomic, strong) NSMutableArray *connectedPeers;
 
 @end
 
@@ -22,15 +26,47 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     [super viewDidLoad];
     
     self.leftBarButtonItem.title = @"\u2699\uFE0E";
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Register cell classes
-//    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    // Initialize Multipeer connectivity handler
+    [[MPCHandler sharedInstance] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
     
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(peerDidChangeStateWithNotification:)
+                                                 name:@"MCDidChangeStateNotification"
+                                               object:nil];
+    
+    self.connectedPeers = [NSMutableArray arrayWithCapacity:1];
+    
 }
 
+- (void)peerDidChangeStateWithNotification:(NSNotification *)notification{
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *peerDisplayName = peerID.displayName;
+    MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
+    
+    NSLog(@"peer %@:%@ (%ld)",peerID,peerDisplayName,(long)state);
+    if (state != MCSessionStateConnecting) {
+        if (state == MCSessionStateConnected) {
+            NSLog(@"Peer connected!");
+            [self.connectedPeers addObject:peerDisplayName];
+            [self sendNewMessage];
+            //TODO: show alert to user with connnected peer's name?
+        }
+        else if (state == MCSessionStateNotConnected){
+            if ([self.connectedPeers count] > 0) {
+                NSLog(@"Peer NOT connected!");
+                NSUInteger indexOfPeer = [self.connectedPeers indexOfObject: peerDisplayName];
+                [self.connectedPeers removeObjectAtIndex:indexOfPeer];
+            }
+        }
+        
+        [self.collectionView reloadData];
+    }
+}
+
+- (void)sendNewMessage {
+    [[MPCHandler sharedInstance] sendMessage:@"some test text"];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -49,20 +85,19 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 2;
+    return self.connectedPeers.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    ConversationViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
+    cell.userNameLabel.text = self.connectedPeers[indexPath.row];
     
     return cell;
 }

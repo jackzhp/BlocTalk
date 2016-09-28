@@ -37,14 +37,13 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-rE-ylE">
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="8nl-ci-i46"/>
-                                                <constraint firstAttribute="width" constant="70" id="VgH-k6-Med"/>
+                                                <constraint firstAttribute="width" constant="150" id="VgH-k6-Med"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu" translatesAutoresizingMaskIntoConstraints="NO" id="BZo-A3-N42">
-                                            <frame key="frameInset" minX="65" minY="24" width="260" height="44"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu" translatesAutoresizingMaskIntoConstraints="NO" id="BZo-A3-N42">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="Jhg-jY-Ces"/>
@@ -86,7 +85,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCU-cb-fFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1940" y="785.75712143928047"/>
+            <point key="canvasLocation" x="2038" y="806"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aJp-0g-QT4">
