@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		ABF56A991D9B59AF0061DE36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56A981D9B59AF0061DE36 /* main.m */; };
 		ABF56A9C1D9B59AF0061DE36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56A9B1D9B59AF0061DE36 /* AppDelegate.m */; };
-		ABF56A9F1D9B59AF0061DE36 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56A9E1D9B59AF0061DE36 /* ViewController.m */; };
 		ABF56AA21D9B59AF0061DE36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF56AA01D9B59AF0061DE36 /* Main.storyboard */; };
 		ABF56AA41D9B59AF0061DE36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABF56AA31D9B59AF0061DE36 /* Assets.xcassets */; };
 		ABF56AA71D9B59AF0061DE36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF56AA51D9B59AF0061DE36 /* LaunchScreen.storyboard */; };
 		ABF56AB21D9B59AF0061DE36 /* BlocTalkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AB11D9B59AF0061DE36 /* BlocTalkTests.m */; };
+		ABF56ABE1D9B6BF60061DE36 /* ConversationCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56ABD1D9B6BF60061DE36 /* ConversationCollectionViewController.m */; };
+		ABF56AC11D9B70E10061DE36 /* ConversationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AC01D9B70E10061DE36 /* ConversationViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,8 +32,6 @@
 		ABF56A981D9B59AF0061DE36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ABF56A9A1D9B59AF0061DE36 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ABF56A9B1D9B59AF0061DE36 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		ABF56A9D1D9B59AF0061DE36 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		ABF56A9E1D9B59AF0061DE36 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		ABF56AA11D9B59AF0061DE36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABF56AA31D9B59AF0061DE36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABF56AA61D9B59AF0061DE36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +39,10 @@
 		ABF56AAD1D9B59AF0061DE36 /* BlocTalkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocTalkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF56AB11D9B59AF0061DE36 /* BlocTalkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocTalkTests.m; sourceTree = "<group>"; };
 		ABF56AB31D9B59AF0061DE36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABF56ABC1D9B6BF60061DE36 /* ConversationCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationCollectionViewController.h; sourceTree = "<group>"; };
+		ABF56ABD1D9B6BF60061DE36 /* ConversationCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationCollectionViewController.m; sourceTree = "<group>"; };
+		ABF56ABF1D9B70E10061DE36 /* ConversationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationViewCell.h; sourceTree = "<group>"; };
+		ABF56AC01D9B70E10061DE36 /* ConversationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +86,13 @@
 			children = (
 				ABF56A9A1D9B59AF0061DE36 /* AppDelegate.h */,
 				ABF56A9B1D9B59AF0061DE36 /* AppDelegate.m */,
-				ABF56A9D1D9B59AF0061DE36 /* ViewController.h */,
-				ABF56A9E1D9B59AF0061DE36 /* ViewController.m */,
-				ABF56AA01D9B59AF0061DE36 /* Main.storyboard */,
+				ABF56ABF1D9B70E10061DE36 /* ConversationViewCell.h */,
+				ABF56AC01D9B70E10061DE36 /* ConversationViewCell.m */,
+				ABF56ABC1D9B6BF60061DE36 /* ConversationCollectionViewController.h */,
+				ABF56ABD1D9B6BF60061DE36 /* ConversationCollectionViewController.m */,
 				ABF56AA31D9B59AF0061DE36 /* Assets.xcassets */,
 				ABF56AA51D9B59AF0061DE36 /* LaunchScreen.storyboard */,
+				ABF56AA01D9B59AF0061DE36 /* Main.storyboard */,
 				ABF56AA81D9B59AF0061DE36 /* Info.plist */,
 				ABF56A971D9B59AF0061DE36 /* Supporting Files */,
 			);
@@ -215,9 +220,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABF56A9F1D9B59AF0061DE36 /* ViewController.m in Sources */,
 				ABF56A9C1D9B59AF0061DE36 /* AppDelegate.m in Sources */,
 				ABF56A991D9B59AF0061DE36 /* main.m in Sources */,
+				ABF56AC11D9B70E10061DE36 /* ConversationViewCell.m in Sources */,
+				ABF56ABE1D9B6BF60061DE36 /* ConversationCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,9 +359,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VQC44ZEQA8;
 				INFOPLIST_FILE = BlocTalk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jahedstrom.BlocTalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -365,9 +373,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VQC44ZEQA8;
 				INFOPLIST_FILE = BlocTalk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jahedstrom.BlocTalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

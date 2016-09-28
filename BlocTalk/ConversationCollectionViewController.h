@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ConversationCollectionViewController.h
 //  BlocTalk
 //
 //  Created by Jonathan on 9/27/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ConversationCollectionViewController : UICollectionViewController
 
 @end
-
