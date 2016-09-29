@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class User, Message;
+@class User, Message, MCPeerID;
 
 @interface Conversation : NSObject
 
-@property (nonatomic, strong) User *user;
-@property (nonatomic, strong) NSArray *messages;
+//@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) MCPeerID *peerID;
+@property (nonatomic, strong) NSArray *messagesCache;
 
-- (instancetype)initWithUser:(User *)user;
+//- (instancetype)initWithUser:(User *)user;
+- (instancetype)initWithPeerID:(MCPeerID *)peerID andMessage:(Message *)message;
 
 - (void)addMessageToConversation:(Message *)message;
 

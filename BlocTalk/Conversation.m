@@ -7,29 +7,33 @@
 //
 
 #import "Conversation.h"
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "User.h"
 #import "Message.h"
 
 @interface Conversation () {
-    NSMutableArray *_messages;
+    NSMutableArray *_messagesCache;
 }
 
 @end
 
 @implementation Conversation
 
-- (instancetype)initWithUser:(User *)user {
+- (instancetype)initWithPeerID:(MCPeerID *)peerID andMessage:(Message *)message {
     self = [super init];
     
     if (self) {
-        self.user = user;
-        self.messages = [NSArray array];
+        self.peerID = peerID;
+        if (!self.messagesCache) {
+        self.messagesCache = [NSMutableArray array];
+        }
+        [self addMessageToConversation:message];
     }
     
     return self;
 }
 
 - (void)addMessageToConversation:(Message *)message {
-    [_messages addObject:message];
+    [_messagesCache addObject:message];
 }
 @end

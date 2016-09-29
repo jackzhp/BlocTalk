@@ -31,9 +31,28 @@
     if (self) {
         
         self.conversations = [NSMutableArray array];
+        [self registerForDataReceivedNotification];
     }
     
     return self;
+}
+
+- (void)registerForDataReceivedNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(processNewData:)
+                                                 name:@"MPCHandlerDidReceiveDataNotification"
+                                               object:nil];
+
+}
+
+- (void)processNewData:(NSNotification *)notification {
+    
+    NSDate *messageDate = [NSDate date];
+    NSDictionary *messageDict = @{@"peerID" : notification.userInfo[@"peerID"], @"timestamp" : messageDate, @"text" : notification.userInfo[@"textData"]};
+    Message *message = [[Message alloc] initWithDictionary:messageDict];
+    Conversation *conversation = [[Conversation alloc] initWithPeerID:notification.userInfo[@"peerID"] andMessage:message];
+    [self addConversation:conversation];
+    
 }
 
 - (void)addConversation:(Conversation *)conversation {

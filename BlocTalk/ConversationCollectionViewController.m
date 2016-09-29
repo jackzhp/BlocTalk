@@ -9,7 +9,10 @@
 #import "ConversationCollectionViewController.h"
 #import "ConversationViewCell.h"
 #import "User.h"
+#import "Message.h"
+#import "Conversation.h"
 #import "MPCHandler.h"
+#import "ConversationManager.h"
 
 @interface ConversationCollectionViewController ()
 
@@ -30,9 +33,12 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     // Initialize Multipeer connectivity handler
     [[MPCHandler sharedInstance] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
     
+    // Initialize Conversation Manager
+    [ConversationManager sharedInstance];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(peerDidChangeStateWithNotification:)
-                                                 name:@"MCDidChangeStateNotification"
+                                                 name:@"MPCHandlerDidChangeStateNotification"
                                                object:nil];
     
     self.connectedPeers = [NSMutableArray arrayWithCapacity:1];
@@ -90,14 +96,21 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.connectedPeers.count;
+    return [ConversationManager sharedInstance].conversations.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ConversationViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    cell.userNameLabel.text = self.connectedPeers[indexPath.row];
+    NSString *userLabel = [[ConversationManager sharedInstance].conversations[indexPath.row] peerID].displayName;
+    NSArray *messagesCache = [[ConversationManager sharedInstance].conversations[indexPath.row] messagesCache];
+    Message *message = [messagesCache objectAtIndex:0];
+    NSString *messageText = message.text;
+    
+    cell.userNameLabel.text = userLabel;
+    cell.conversationTextView.text = messageText;
+    
     
     return cell;
 }

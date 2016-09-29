@@ -7,7 +7,20 @@
 //
 
 #import "Message.h"
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 
 @implementation Message
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    self = [super init];
+    
+    if (self) {
+        self.peerID = dictionary[@"peerID"];
+        self.timestamp = dictionary[@"timestamp"];
+        self.text = dictionary[@"text"];
+    }
+    
+    return self;
+}
 
 @end

@@ -11,6 +11,8 @@
 
 @implementation MPCHandler 
 
+#pragma mark - Init and setup
+
 + (instancetype)sharedInstance {
     static dispatch_once_t once;
     static id sharedInstance;
@@ -51,6 +53,8 @@
     NSLog(@"Browsing for peers...");
 }
 
+#pragma mark - Message Sending
+
 - (BOOL)sendMessage:(NSString*)message {
     
     NSData *dataToSend = [message dataUsingEncoding:NSUTF8StringEncoding];
@@ -81,7 +85,7 @@
     
     // need to dispatch to main thread?
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidChangeStateNotification"
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MPCHandlerDidChangeStateNotification"
                                                             object:nil
                                                           userInfo:dict];
     });
@@ -106,7 +110,7 @@
     
     // need to dispatch to main thread?
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidReceiveDataNotification"
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MPCHandlerDidReceiveDataNotification"
                                                             object:nil
                                                           userInfo:dict];
         

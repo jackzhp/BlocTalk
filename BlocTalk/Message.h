@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class User;
+@class User, MCPeerID;
 
 @interface Message : NSObject
 
-@property (nonatomic, strong) User *fromUser;
-@property (nonatomic, strong) User *toUser;
+//@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) NSDate *timestamp;
 @property (nonatomic, strong) NSString *text;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
