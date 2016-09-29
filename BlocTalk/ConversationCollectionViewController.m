@@ -13,6 +13,7 @@
 #import "Conversation.h"
 #import "MPCHandler.h"
 #import "ConversationManager.h"
+#import "ConnectedPeersTableViewController.h"
 
 @interface ConversationCollectionViewController ()
 
@@ -40,6 +41,13 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
                                              selector:@selector(peerDidChangeStateWithNotification:)
                                                  name:@"MPCHandlerDidChangeStateNotification"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(processNewData:)
+                                                 name:@"MPCHandlerDidReceiveDataNotification"
+                                               object:nil];
+    
+
     
     self.connectedPeers = [NSMutableArray arrayWithCapacity:1];
     
@@ -73,20 +81,36 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
 - (void)sendNewMessage {
     [[MPCHandler sharedInstance] sendMessage:@"some test text"];
 }
+
+- (void)processNewData:(NSNotification *)notification {
+    [[ConversationManager sharedInstance] addConversationWithDictionary:notification.userInfo andCompletionHandler:^(NSError *error) {
+        if (error == nil) {
+            [self.collectionView reloadData];
+        } else {
+            NSLog(@"%@",error.description);
+        }
+    }];
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"showConnectedPeersSegue"]) {
+        ConnectedPeersTableViewController *connectedPeersTblVC = [segue destinationViewController];
+        connectedPeersTblVC.connectedPeers = self.connectedPeers;
+    }
 }
-*/
+
 
 #pragma mark <UICollectionViewDataSource>
 

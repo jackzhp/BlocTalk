@@ -16,5 +16,6 @@
 
 + (instancetype)sharedInstance;
 - (void)addConversation:(Conversation *)conversation;
+- (void)addConversationWithDictionary:(NSDictionary *)dictionary andCompletionHandler:(void (^)(NSError *error))block;
 
 @end

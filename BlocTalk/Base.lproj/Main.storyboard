@@ -77,7 +77,11 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="BlocTalk" id="I6U-dy-032">
                         <barButtonItem key="leftBarButtonItem" id="tJX-vb-dNr"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ILn-Ez-hXk"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ILn-Ez-hXk">
+                            <connections>
+                                <segue destination="ub5-Ag-vOh" kind="show" identifier="showConnectedPeersSegue" id="Ty3-Zj-x0r"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="leftBarButtonItem" destination="tJX-vb-dNr" id="dW7-gw-kI0"/>
@@ -86,6 +90,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCU-cb-fFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2038" y="806"/>
+        </scene>
+        <!--Select a Peer to Talk to..-->
+        <scene sceneID="MXC-1g-Vzp">
+            <objects>
+                <tableViewController id="ub5-Ag-vOh" customClass="ConnectedPeersTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="18" sectionFooterHeight="18" id="Exo-Tx-q7f">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PeerViewCell" textLabel="JES-tl-cns" detailTextLabel="5pO-n5-0sI" rowHeight="100" style="IBUITableViewCellStyleSubtitle" id="bro-qW-hca">
+                                <rect key="frame" x="0.0" y="120" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bro-qW-hca" id="EoK-qO-kJB">
+                                    <frame key="frameInset" width="375" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JES-tl-cns">
+                                            <frame key="frameInset" minX="15" minY="32" width="34" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5pO-n5-0sI">
+                                            <frame key="frameInset" minX="15" minY="53" width="33" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ub5-Ag-vOh" id="9zQ-7W-n1u"/>
+                            <outlet property="delegate" destination="ub5-Ag-vOh" id="RWj-z9-lNu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select a Peer to Talk to.." id="hCL-4c-ZEf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kyG-Xm-t7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2956" y="806"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aJp-0g-QT4">

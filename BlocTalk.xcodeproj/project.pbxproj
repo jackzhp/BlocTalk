@@ -20,6 +20,7 @@
 		ABF56ACE1D9C15650061DE36 /* MPCHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56ACD1D9C15650061DE36 /* MPCHandler.m */; };
 		ABF56AD11D9C6A700061DE36 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD01D9C6A700061DE36 /* Conversation.m */; };
 		ABF56AD41D9C6EB00061DE36 /* ConversationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD31D9C6EB00061DE36 /* ConversationManager.m */; };
+		ABF56AD71D9CC7900061DE36 /* ConnectedPeersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD61D9CC7900061DE36 /* ConnectedPeersTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		ABF56AD01D9C6A700061DE36 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		ABF56AD21D9C6EB00061DE36 /* ConversationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationManager.h; sourceTree = "<group>"; };
 		ABF56AD31D9C6EB00061DE36 /* ConversationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationManager.m; sourceTree = "<group>"; };
+		ABF56AD51D9CC7900061DE36 /* ConnectedPeersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectedPeersTableViewController.h; sourceTree = "<group>"; };
+		ABF56AD61D9CC7900061DE36 /* ConnectedPeersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectedPeersTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 		ABF56AC51D9B7E120061DE36 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ABF56AD51D9CC7900061DE36 /* ConnectedPeersTableViewController.h */,
+				ABF56AD61D9CC7900061DE36 /* ConnectedPeersTableViewController.m */,
 				ABF56ABC1D9B6BF60061DE36 /* ConversationCollectionViewController.h */,
 				ABF56ABD1D9B6BF60061DE36 /* ConversationCollectionViewController.m */,
 			);
@@ -276,6 +281,7 @@
 				ABF56AD11D9C6A700061DE36 /* Conversation.m in Sources */,
 				ABF56AC11D9B70E10061DE36 /* ConversationViewCell.m in Sources */,
 				ABF56ABE1D9B6BF60061DE36 /* ConversationCollectionViewController.m in Sources */,
+				ABF56AD71D9CC7900061DE36 /* ConnectedPeersTableViewController.m in Sources */,
 				ABF56AD41D9C6EB00061DE36 /* ConversationManager.m in Sources */,
 				ABF56ACE1D9C15650061DE36 /* MPCHandler.m in Sources */,
 			);
