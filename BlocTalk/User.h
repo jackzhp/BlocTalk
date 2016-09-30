@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *profileImageName;
 
+- (instancetype)initWithPeerID:(MCPeerID *)peerID;
+
 @end

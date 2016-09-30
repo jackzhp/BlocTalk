@@ -12,7 +12,7 @@
 #import "Message.h"
 #import "Conversation.h"
 #import "MPCHandler.h"
-#import "ConversationManager.h"
+#import "DataManager.h"
 #import "ConnectedPeersTableViewController.h"
 
 @interface ConversationCollectionViewController ()
@@ -35,7 +35,7 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     [[MPCHandler sharedInstance] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
     
     // Initialize Conversation Manager
-    [ConversationManager sharedInstance];
+    [DataManager sharedInstance];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(peerDidChangeStateWithNotification:)
@@ -83,14 +83,20 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
 }
 
 - (void)processNewData:(NSNotification *)notification {
-    [[ConversationManager sharedInstance] addConversationWithDictionary:notification.userInfo andCompletionHandler:^(NSError *error) {
-        if (error == nil) {
-            [self.collectionView reloadData];
-        } else {
-            NSLog(@"%@",error.description);
-        }
-    }];
-
+    // create conversation object
+    
+    //add
+    
+    //reload
+    
+//    [[DataManager sharedInstance] addConversationWithDictionary:notification.userInfo andCompletionHandler:^(NSError *error) {
+//        if (error == nil) {
+//            [self.collectionView reloadData];
+//        } else {
+//            NSLog(@"%@",error.description);
+//        }
+//    }];
+    [self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,16 +126,17 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [ConversationManager sharedInstance].conversations.count;
+    return [DataManager sharedInstance].conversations.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ConversationViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    NSString *userLabel = [[ConversationManager sharedInstance].conversations[indexPath.row] peerID].displayName;
-    NSArray *messagesCache = [[ConversationManager sharedInstance].conversations[indexPath.row] messagesCache];
-    Message *message = [messagesCache objectAtIndex:0];
+    NSString *userLabel = [[DataManager sharedInstance].conversations[indexPath.row] user];
+    NSArray *messages = [[DataManager sharedInstance].conversations[indexPath.row] messages];
+    // get the last object (latest message) to show on conversations screen
+    Message *message = [messages lastObject];
     NSString *messageText = message.text;
     
     cell.userNameLabel.text = userLabel;

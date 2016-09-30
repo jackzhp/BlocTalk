@@ -12,13 +12,13 @@
 
 @interface Conversation : NSObject
 
-//@property (nonatomic, strong) User *user;
-@property (nonatomic, strong) MCPeerID *peerID;
-@property (nonatomic, strong) NSArray *messagesCache;
+@property (nonatomic, strong) User *user;  // who conversation is with
+@property (nonatomic, strong) NSArray *messages;
 
-//- (instancetype)initWithUser:(User *)user;
-- (instancetype)initWithPeerID:(MCPeerID *)peerID andMessage:(Message *)message;
+- (instancetype)initWithUser:(User *)user;
+//- (instancetype)initWithPeerID:(MCPeerID *)peerID andMessage:(Message *)message;
 
-- (void)addMessageToConversation:(Message *)message;
+- (void)addMessage:(Message *)message;
+- (void)removeMessage:(Message *)message;
 
 @end

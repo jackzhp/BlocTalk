@@ -8,6 +8,8 @@
 
 #import "Message.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "User.h"
+#import "DataManager.h"
 
 @implementation Message
 
@@ -15,7 +17,9 @@
     self = [super init];
     
     if (self) {
-        self.peerID = dictionary[@"peerID"];
+        // users are created first, so should have data in DataManager's users array
+        self.user = [[DataManager sharedInstance] userForPeerID:dictionary[@"peerID"]];
+//        self.peerID = dictionary[@"peerID"];
         self.timestamp = dictionary[@"timestamp"];
         self.text = dictionary[@"text"];
     }

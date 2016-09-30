@@ -12,28 +12,32 @@
 #import "Message.h"
 
 @interface Conversation () {
-    NSMutableArray *_messagesCache;
+    NSMutableArray *_messages;
 }
 
 @end
 
 @implementation Conversation
 
-- (instancetype)initWithPeerID:(MCPeerID *)peerID andMessage:(Message *)message {
+- (instancetype)initWithUser:(User *)user {
     self = [super init];
     
     if (self) {
-        self.peerID = peerID;
-        if (!self.messagesCache) {
-        self.messagesCache = [NSMutableArray array];
+        self.user = user;
+        if (!self.messages) {
+        self.messages = [NSMutableArray arrayWithCapacity:1];
         }
-        [self addMessageToConversation:message];
+//        [self addMessageToConversation:message];
     }
     
     return self;
 }
 
-- (void)addMessageToConversation:(Message *)message {
-    [_messagesCache addObject:message];
+- (void)addMessage:(Message *)message {
+    [_messages addObject:message];
+}
+
+- (void)removeMessage:(Message *)message {
+    [_messages removeObject:message];
 }
 @end

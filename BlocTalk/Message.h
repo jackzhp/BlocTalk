@@ -12,8 +12,8 @@
 
 @interface Message : NSObject
 
-//@property (nonatomic, strong) User *user;
-@property (nonatomic, strong) MCPeerID *peerID;
+@property (nonatomic, strong) User *user;
+//@property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) NSDate *timestamp;
 @property (nonatomic, strong) NSString *text;
 

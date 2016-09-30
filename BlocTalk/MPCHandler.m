@@ -60,6 +60,7 @@
     NSData *dataToSend = [message dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
     
+    //TODO: send to all peers or just to who the conversation is with?
     [self.session sendData:dataToSend
                    toPeers:[self.session connectedPeers]
                   withMode:MCSessionSendDataReliable
@@ -93,6 +94,17 @@
 }
 
 -(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
+    //create message
+    
+    //check what conversation it belongs to
+    
+    //if not, create a new one
+
+    //attach to conversation
+    
+    //send conversation in notification
+    
+    
     NSDictionary *dict = @{@"data": data,
                            @"peerID": peerID,
                            @"textData": [[NSString alloc] initWithData:data
