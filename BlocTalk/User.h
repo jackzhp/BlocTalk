@@ -11,7 +11,7 @@
 
 @class MCPeerID;
 
-@interface User : NSObject
+@interface User : NSObject <NSCoding>
 
 @property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) NSString *userName;

@@ -24,6 +24,7 @@
     
     if (self) {
         self.user = user;
+        self.isArchived = NO;  // set default to no
         if (!self.messages) {
         self.messages = [NSMutableArray arrayWithCapacity:1];
         }
@@ -40,4 +41,26 @@
 - (void)removeMessage:(Message *)message {
     [_messages removeObject:message];
 }
+
+#pragma mark - NSCoding
+
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    
+    if (self) {
+        self.user = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(user))];
+        self.messages = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(messages))];
+        self.isArchived = [aDecoder decodeBoolForKey:NSStringFromSelector(@selector(isArchived))];
+    }
+    
+    return self;
+}
+
+- (void) encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.user forKey:NSStringFromSelector(@selector(user))];
+    [aCoder encodeObject:self.messages forKey:NSStringFromSelector(@selector(messages))];
+    [aCoder encodeBool:self.isArchived forKey:NSStringFromSelector(@selector(isArchived))];
+}
+
+
 @end

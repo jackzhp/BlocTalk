@@ -10,10 +10,11 @@
 
 @class User, Message, MCPeerID;
 
-@interface Conversation : NSObject
+@interface Conversation : NSObject <NSCoding>
 
 @property (nonatomic, strong) User *user;  // who conversation is with
 @property (nonatomic, strong) NSArray *messages;
+@property (nonatomic, assign) BOOL isArchived;
 
 - (instancetype)initWithUser:(User *)user;
 //- (instancetype)initWithPeerID:(MCPeerID *)peerID andMessage:(Message *)message;

@@ -53,6 +53,12 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.collectionView reloadData];
+}
+
 - (void)peerDidChangeStateWithNotification:(NSNotification *)notification{
     MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
     NSString *peerDisplayName = peerID.displayName;
@@ -88,14 +94,6 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     //add
     
     //reload
-    
-//    [[DataManager sharedInstance] addConversationWithDictionary:notification.userInfo andCompletionHandler:^(NSError *error) {
-//        if (error == nil) {
-//            [self.collectionView reloadData];
-//        } else {
-//            NSLog(@"%@",error.description);
-//        }
-//    }];
     [self.collectionView reloadData];
 }
 
@@ -133,7 +131,9 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     ConversationViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    NSString *userLabel = [[DataManager sharedInstance].conversations[indexPath.row] user];
+    // why can't I string these together?
+    User *user = (User *)[[DataManager sharedInstance].conversations[indexPath.row] user];
+    NSString *userLabel = user.userName;
     NSArray *messages = [[DataManager sharedInstance].conversations[indexPath.row] messages];
     // get the last object (latest message) to show on conversations screen
     Message *message = [messages lastObject];

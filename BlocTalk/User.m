@@ -23,4 +23,26 @@
     return self;
 }
 
+#pragma mark - NSCoding
+
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    
+    if (self) {
+        self.peerID = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(peerID))];
+        self.userName = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(userName))];
+        self.profileImageName = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(profileImageName))];
+    }
+    
+    return self;
+}
+
+- (void) encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.peerID forKey:NSStringFromSelector(@selector(peerID))];
+    [aCoder encodeObject:self.userName forKey:NSStringFromSelector(@selector(userName))];
+    [aCoder encodeObject:self.profileImageName forKey:NSStringFromSelector(@selector(profileImageName))];
+}
+
+
+
 @end

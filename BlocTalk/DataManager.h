@@ -17,9 +17,7 @@
 
 + (instancetype)sharedInstance;
 - (void)addConversation:(Conversation *)conversation;
-
-// remove this - don't need completion handlder since it is all sequential code.
-//- (void)addConversationWithDictionary:(NSDictionary *)dictionary andCompletionHandler:(void (^)(NSError *error))block;
+- (void)addUser:(User *)user;
 
 - (User *)userForPeerID:(MCPeerID *)peerID;
 - (Conversation *)conversationForPeerId:(MCPeerID *)peerID;

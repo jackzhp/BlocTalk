@@ -7,7 +7,10 @@
 //
 
 #import "MPCHandler.h"
+#import "DataManager.h"
 #import "User.h"
+#import "Message.h"
+#import "Conversation.h"
 
 @implementation MPCHandler 
 
@@ -94,38 +97,51 @@
 }
 
 -(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
-    //create message
+    // get user for peerID
+    User *user = [[DataManager sharedInstance] userForPeerID:peerID];
+    NSString *messageText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDate *timestamp = [NSDate date];
+    NSDictionary *dict;
     
-    //check what conversation it belongs to
-    
-    //if not, create a new one
-
-    //attach to conversation
-    
-    //send conversation in notification
-    
-    
-    NSDictionary *dict = @{@"data": data,
-                           @"peerID": peerID,
-                           @"textData": [[NSString alloc] initWithData:data
-                                                              encoding:NSUTF8StringEncoding]
-                           };
-    
-    // Save data
-//    NSString *conversation = self.historyByPeer[peerID.displayName];
-//    if (conversation == nil) {
-//        self.historyByPeer[peerID.displayName] = @"";
-//        conversation = self.historyByPeer[peerID.displayName];
-//    }
-//    conversation = [conversation stringByAppendingFormat:@"%@> %@\n",peerID.displayName,dict[@"textData"]];
-//    self.historyByPeer[peerID.displayName] = conversation;
+    if (user) {
+        // create new message
+        Message *message = [[Message alloc] initWithUser:user messageText:messageText andTimestamp:timestamp];
+        
+        //check what conversation it belongs to
+        // change this method to conversationForUser:?
+        Conversation *conversation = [[DataManager sharedInstance] conversationForPeerId:peerID];
+        
+        //if not, create a new one and add it to the data manager array
+        if (!conversation) {
+            conversation = [[Conversation alloc] initWithUser:user];
+            [[DataManager sharedInstance] addConversation:conversation];
+        }
+        //attach to conversation
+        [conversation addMessage:message];
+        //send conversation in notification
+        
+        
+        dict = @{@"conversation": conversation};
+        
+        // Save data
+        //    NSString *conversation = self.historyByPeer[peerID.displayName];
+        //    if (conversation == nil) {
+        //        self.historyByPeer[peerID.displayName] = @"";
+        //        conversation = self.historyByPeer[peerID.displayName];
+        //    }
+        //    conversation = [conversation stringByAppendingFormat:@"%@> %@\n",peerID.displayName,dict[@"textData"]];
+        //    self.historyByPeer[peerID.displayName] = conversation;
+       
+    } else {
+        // maybe send some error data?
+        dict = nil;
+    }
     
     // need to dispatch to main thread?
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MPCHandlerDidReceiveDataNotification"
                                                             object:nil
                                                           userInfo:dict];
-        
     });
 }
 
@@ -152,11 +168,15 @@
     
     NSLog(@"Found peer with ID: %@", peerID);
     [self.browser invitePeer:peerID toSession:self.session withContext:nil timeout:30.0];
-    User *user = [[User alloc] init];
-    user.peerID = peerID;
-    user.userName = peerID.displayName;
+    User *user = [[DataManager sharedInstance] userForPeerID:peerID];
+    // check to see if this user has connected before?
+    if (!user) {
+        user = [[User alloc] initWithPeerID:peerID];
+        [[DataManager sharedInstance] addUser:user];
+    }
     
     [self.activePeers addObject:user];
+
     
 }
 
@@ -165,7 +185,7 @@
     
     NSUInteger index = NSIntegerMax;
     for (User *user in self.activePeers) {
-        if (user.peerID == peerID) {
+        if ([user.peerID isEqual:peerID]) {
             index = [self.activePeers indexOfObject:user];
         }
     }
@@ -173,6 +193,7 @@
     if (!(index == NSIntegerMax)) {
         NSLog(@"Removing %@ from activePeers array", self.activePeers[index]);
         [self.activePeers removeObjectAtIndex:index];
+        
     } else {
         NSLog(@"Error: couldn't find peer in activePeers array");
     }
