@@ -11,6 +11,7 @@
 #import "Message.h"
 #import "User.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import <JSQMessages.h>
 
 @implementation DataManager {
     NSMutableArray *_conversations;
@@ -61,9 +62,6 @@
 - (User *)userForPeerID:(MCPeerID *)peerID {
     for (User *user in self.users) {
         if([user.peerID isEqual:peerID]) {
-            NSLog(@"user.peerID: %@ is equal to peerID: %@", user.peerID, peerID);
-        }
-        if ([user.peerID.displayName isEqualToString:peerID.displayName]) {
             return user;
         }
     }
@@ -75,9 +73,6 @@
 - (Conversation *)conversationForPeerId:(MCPeerID *)peerID {
     for (Conversation *conversation in self.conversations) {
         if([conversation.user.peerID isEqual:peerID]) {
-            NSLog(@"conversation.peerID: %@ is equal to peerID: %@", conversation.user.peerID, peerID);
-        }
-        if ([conversation.user.peerID.displayName isEqualToString:peerID.displayName]) {
             return conversation;
         }
     }
@@ -93,6 +88,11 @@
 
 - (void)addUser:(User *)user {
     [_users addObject:user];
+    [self saveData];
+}
+
+- (void)addMessage:(JSQMessage *)message ToConversation:(Conversation *)conversation {
+    [conversation addMessage:message];
     [self saveData];
 }
 

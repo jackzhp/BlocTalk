@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9802BBB62F09736AE940FE53 /* libPods-BlocTalkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD915DCD20CE1029FBCE0A07 /* libPods-BlocTalkTests.a */; };
 		ABF56A991D9B59AF0061DE36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56A981D9B59AF0061DE36 /* main.m */; };
 		ABF56A9C1D9B59AF0061DE36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56A9B1D9B59AF0061DE36 /* AppDelegate.m */; };
 		ABF56AA21D9B59AF0061DE36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF56AA01D9B59AF0061DE36 /* Main.storyboard */; };
@@ -21,6 +22,8 @@
 		ABF56AD11D9C6A700061DE36 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD01D9C6A700061DE36 /* Conversation.m */; };
 		ABF56AD41D9C6EB00061DE36 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD31D9C6EB00061DE36 /* DataManager.m */; };
 		ABF56AD71D9CC7900061DE36 /* ConnectedPeersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD61D9CC7900061DE36 /* ConnectedPeersTableViewController.m */; };
+		ABF56ADA1DA1E5190061DE36 /* ConversationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD91DA1E5190061DE36 /* ConversationDetailViewController.m */; };
+		B8EAA55D1EA9FEE46297AFE9 /* libPods-BlocTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9D8AA77A0EA380538DCA77 /* libPods-BlocTalk.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B81F0EFDF1FD0061758A66F /* Pods-BlocTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocTalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlocTalk/Pods-BlocTalk.release.xcconfig"; sourceTree = "<group>"; };
+		42A7F6548F2FFBB37D588E8D /* Pods-BlocTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocTalkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlocTalkTests/Pods-BlocTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4BC8349B0162C70C1D93ED69 /* Pods-BlocTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocTalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlocTalk/Pods-BlocTalk.debug.xcconfig"; sourceTree = "<group>"; };
 		ABF56A941D9B59AF0061DE36 /* BlocTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF56A981D9B59AF0061DE36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ABF56A9A1D9B59AF0061DE36 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +67,11 @@
 		ABF56AD31D9C6EB00061DE36 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		ABF56AD51D9CC7900061DE36 /* ConnectedPeersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectedPeersTableViewController.h; sourceTree = "<group>"; };
 		ABF56AD61D9CC7900061DE36 /* ConnectedPeersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectedPeersTableViewController.m; sourceTree = "<group>"; };
+		ABF56AD81DA1E5190061DE36 /* ConversationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationDetailViewController.h; sourceTree = "<group>"; };
+		ABF56AD91DA1E5190061DE36 /* ConversationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationDetailViewController.m; sourceTree = "<group>"; };
+		B502441CD47DF1549418325A /* Pods-BlocTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocTalkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlocTalkTests/Pods-BlocTalkTests.release.xcconfig"; sourceTree = "<group>"; };
+		BD915DCD20CE1029FBCE0A07 /* libPods-BlocTalkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlocTalkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE9D8AA77A0EA380538DCA77 /* libPods-BlocTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlocTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EAA55D1EA9FEE46297AFE9 /* libPods-BlocTalk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,18 +87,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9802BBB62F09736AE940FE53 /* libPods-BlocTalkTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		129B6D341BD4AF87F8F49B6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE9D8AA77A0EA380538DCA77 /* libPods-BlocTalk.a */,
+				BD915DCD20CE1029FBCE0A07 /* libPods-BlocTalkTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22846267D1DFE3003074C740 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4BC8349B0162C70C1D93ED69 /* Pods-BlocTalk.debug.xcconfig */,
+				3B81F0EFDF1FD0061758A66F /* Pods-BlocTalk.release.xcconfig */,
+				42A7F6548F2FFBB37D588E8D /* Pods-BlocTalkTests.debug.xcconfig */,
+				B502441CD47DF1549418325A /* Pods-BlocTalkTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		ABF56A8B1D9B59AF0061DE36 = {
 			isa = PBXGroup;
 			children = (
 				ABF56A961D9B59AF0061DE36 /* BlocTalk */,
 				ABF56AB01D9B59AF0061DE36 /* BlocTalkTests */,
 				ABF56A951D9B59AF0061DE36 /* Products */,
+				22846267D1DFE3003074C740 /* Pods */,
+				129B6D341BD4AF87F8F49B6B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,6 +201,8 @@
 				ABF56AD61D9CC7900061DE36 /* ConnectedPeersTableViewController.m */,
 				ABF56ABC1D9B6BF60061DE36 /* ConversationCollectionViewController.h */,
 				ABF56ABD1D9B6BF60061DE36 /* ConversationCollectionViewController.m */,
+				ABF56AD81DA1E5190061DE36 /* ConversationDetailViewController.h */,
+				ABF56AD91DA1E5190061DE36 /* ConversationDetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -177,9 +214,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABF56AB61D9B59AF0061DE36 /* Build configuration list for PBXNativeTarget "BlocTalk" */;
 			buildPhases = (
+				90DAE3CBAF6AD92E034C0B5A /* [CP] Check Pods Manifest.lock */,
 				ABF56A901D9B59AF0061DE36 /* Sources */,
 				ABF56A911D9B59AF0061DE36 /* Frameworks */,
 				ABF56A921D9B59AF0061DE36 /* Resources */,
+				6B9425E6B546991ECEC756E6 /* [CP] Embed Pods Frameworks */,
+				FEC5CF871F6367FC2B9F808F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,9 +234,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABF56AB91D9B59AF0061DE36 /* Build configuration list for PBXNativeTarget "BlocTalkTests" */;
 			buildPhases = (
+				706CF711BEFA5644F2C71EDF /* [CP] Check Pods Manifest.lock */,
 				ABF56AA91D9B59AF0061DE36 /* Sources */,
 				ABF56AAA1D9B59AF0061DE36 /* Frameworks */,
 				ABF56AAB1D9B59AF0061DE36 /* Resources */,
+				AEE153F61B7CBB7DB4DBF532 /* [CP] Embed Pods Frameworks */,
+				10B273136E23455EE76933CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,6 +312,99 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		10B273136E23455EE76933CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlocTalkTests/Pods-BlocTalkTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B9425E6B546991ECEC756E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlocTalk/Pods-BlocTalk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		706CF711BEFA5644F2C71EDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		90DAE3CBAF6AD92E034C0B5A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AEE153F61B7CBB7DB4DBF532 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlocTalkTests/Pods-BlocTalkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEC5CF871F6367FC2B9F808F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlocTalk/Pods-BlocTalk-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ABF56A901D9B59AF0061DE36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -277,6 +413,7 @@
 				ABF56ACB1D9B7FCA0061DE36 /* Message.m in Sources */,
 				ABF56AC81D9B7FB20061DE36 /* User.m in Sources */,
 				ABF56A9C1D9B59AF0061DE36 /* AppDelegate.m in Sources */,
+				ABF56ADA1DA1E5190061DE36 /* ConversationDetailViewController.m in Sources */,
 				ABF56A991D9B59AF0061DE36 /* main.m in Sources */,
 				ABF56AD11D9C6A700061DE36 /* Conversation.m in Sources */,
 				ABF56AC11D9B70E10061DE36 /* ConversationViewCell.m in Sources */,
@@ -415,6 +552,7 @@
 		};
 		ABF56AB71D9B59AF0061DE36 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BC8349B0162C70C1D93ED69 /* Pods-BlocTalk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VQC44ZEQA8;
@@ -429,6 +567,7 @@
 		};
 		ABF56AB81D9B59AF0061DE36 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B81F0EFDF1FD0061758A66F /* Pods-BlocTalk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VQC44ZEQA8;
@@ -443,6 +582,7 @@
 		};
 		ABF56ABA1D9B59AF0061DE36 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42A7F6548F2FFBB37D588E8D /* Pods-BlocTalkTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = VQC44ZEQA8;
@@ -456,6 +596,7 @@
 		};
 		ABF56ABB1D9B59AF0061DE36 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B502441CD47DF1549418325A /* Pods-BlocTalkTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = VQC44ZEQA8;

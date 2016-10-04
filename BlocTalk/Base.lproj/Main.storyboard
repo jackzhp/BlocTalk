@@ -43,13 +43,13 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu" translatesAutoresizingMaskIntoConstraints="NO" id="BZo-A3-N42">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZo-A3-N42">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="Jhg-jY-Ces"/>
                                                 <constraint firstAttribute="width" constant="260" id="yDL-kc-5EV"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
@@ -67,6 +67,7 @@
                                     <outlet property="conversationTextView" destination="BZo-A3-N42" id="CjT-4E-4jk"/>
                                     <outlet property="profileImageView" destination="Wdw-Zh-6dJ" id="MMD-4L-ZES"/>
                                     <outlet property="userNameLabel" destination="GcN-rE-ylE" id="GTv-6G-b1F"/>
+                                    <segue destination="Xbt-JU-wvn" kind="show" identifier="showConversationDetail" id="HEn-XJ-9eg"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -90,6 +91,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCU-cb-fFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2038" y="806"/>
+        </scene>
+        <!--Conversation Detail View Controller-->
+        <scene sceneID="VKf-G2-Ary">
+            <objects>
+                <viewController id="Xbt-JU-wvn" customClass="ConversationDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t13-a4-2MU"/>
+                        <viewControllerLayoutGuide type="bottom" id="ySs-mL-Hf3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q7N-cZ-GH2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CzM-Er-6gr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4034" y="185"/>
         </scene>
         <!--Select a Peer to Talk to..-->
         <scene sceneID="MXC-1g-Vzp">
@@ -123,6 +142,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Xbt-JU-wvn" kind="show" identifier="showConversationDetailFromPeerList" id="Iwt-cG-vbg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -134,7 +156,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyG-Xm-t7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2956" y="806"/>
+            <point key="canvasLocation" x="3105" y="1066"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aJp-0g-QT4">
@@ -158,4 +180,7 @@
     <resources>
         <image name="user" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Iwt-cG-vbg"/>
+    </inferredMetricsTieBreakers>
 </document>

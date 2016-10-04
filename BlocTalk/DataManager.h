@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Conversation, User, MCPeerID;
+@class Conversation, User, MCPeerID, JSQMessage;
 
 @interface DataManager : NSObject
 
@@ -18,6 +18,7 @@
 + (instancetype)sharedInstance;
 - (void)addConversation:(Conversation *)conversation;
 - (void)addUser:(User *)user;
+- (void)addMessage:(JSQMessage *)message ToConversation:(Conversation *)conversation;
 
 - (User *)userForPeerID:(MCPeerID *)peerID;
 - (Conversation *)conversationForPeerId:(MCPeerID *)peerID;

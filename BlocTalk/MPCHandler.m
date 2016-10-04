@@ -11,6 +11,10 @@
 #import "User.h"
 #import "Message.h"
 #import "Conversation.h"
+#import <JSQMessages.h>
+
+static NSString * const kDisplayNameKey = @"CurrentUserDisplayName";
+static NSString * const kPeerIDKey = @"CurrentUserPeerID";
 
 @implementation MPCHandler 
 
@@ -40,7 +44,21 @@
 }
 
 - (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName {
-    self.peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
+    // save PeerID to disk and reload to keep consistent across app launches
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *oldDisplayName = [defaults stringForKey:kDisplayNameKey];
+    
+    if ([oldDisplayName isEqualToString:displayName]) {
+        NSData *peerIDData = [defaults dataForKey:kPeerIDKey];
+        self.peerID = [NSKeyedUnarchiver unarchiveObjectWithData:peerIDData];
+    } else {
+        self.peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
+        NSData *peerIDData = [NSKeyedArchiver archivedDataWithRootObject:self.peerID];
+        [defaults setObject:peerIDData forKey:kPeerIDKey];
+        [defaults setObject:displayName forKey:kDisplayNameKey];
+        [defaults synchronize];
+    }
+//    self.peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
     
     self.session = [[MCSession alloc] initWithPeer:self.peerID securityIdentity:nil encryptionPreference:MCEncryptionNone];
     self.session.delegate = self;
@@ -105,7 +123,8 @@
     
     if (user) {
         // create new message
-        Message *message = [[Message alloc] initWithUser:user messageText:messageText andTimestamp:timestamp];
+        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.uuid senderDisplayName:user.userName date:timestamp text:messageText];
+//        Message *message = [[Message alloc] initWithUser:user messageText:messageText andTimestamp:timestamp];
         
         //check what conversation it belongs to
         // change this method to conversationForUser:?
@@ -117,20 +136,10 @@
             [[DataManager sharedInstance] addConversation:conversation];
         }
         //attach to conversation
-        [conversation addMessage:message];
+        [[DataManager sharedInstance] addMessage:message ToConversation:conversation];
+        
         //send conversation in notification
-        
-        
         dict = @{@"conversation": conversation};
-        
-        // Save data
-        //    NSString *conversation = self.historyByPeer[peerID.displayName];
-        //    if (conversation == nil) {
-        //        self.historyByPeer[peerID.displayName] = @"";
-        //        conversation = self.historyByPeer[peerID.displayName];
-        //    }
-        //    conversation = [conversation stringByAppendingFormat:@"%@> %@\n",peerID.displayName,dict[@"textData"]];
-        //    self.historyByPeer[peerID.displayName] = conversation;
        
     } else {
         // maybe send some error data?
@@ -175,8 +184,9 @@
         [[DataManager sharedInstance] addUser:user];
     }
     
-    [self.activePeers addObject:user];
-
+    if (![self.activePeers containsObject:user]) {
+        [self.activePeers addObject:user];
+    }
     
 }
 

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class User;
+
 @interface ConnectedPeersTableViewController : UITableViewController
 
-//@property (nonatomic, strong) NSArray *connectedPeers;
-@property (nonatomic, strong) NSMutableArray *connectedPeers;
+@property (nonatomic, strong) User *user;
 
 @end

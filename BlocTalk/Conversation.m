@@ -10,6 +10,7 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "User.h"
 #import "Message.h"
+#import <JSQMessages.h>
 
 @interface Conversation () {
     NSMutableArray *_messages;

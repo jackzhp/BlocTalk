@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class User, Message, MCPeerID;
+@class User, Message, MCPeerID, JSQMessage;
 
 @interface Conversation : NSObject <NSCoding>
 
@@ -19,7 +19,7 @@
 - (instancetype)initWithUser:(User *)user;
 //- (instancetype)initWithPeerID:(MCPeerID *)peerID andMessage:(Message *)message;
 
-- (void)addMessage:(Message *)message;
-- (void)removeMessage:(Message *)message;
+- (void)addMessage:(JSQMessage *)message;
+- (void)removeMessage:(JSQMessage *)message;
 
 @end

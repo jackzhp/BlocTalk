@@ -10,6 +10,9 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "MPCHandler.h"
 #import "User.h"
+#import "Conversation.h"
+#include "ConversationDetailViewController.h"
+#include "DataManager.h"
 
 @interface ConnectedPeersTableViewController ()
 
@@ -116,14 +119,29 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"showConversationDetailFromPeerList"]) {
+        ConversationDetailViewController *conversationDetailVC = [segue destinationViewController];
+        // figure out how to generate a unique senderID that is the same across reboots
+        conversationDetailVC.senderId = self.user.userName;
+        conversationDetailVC.senderDisplayName = self.user.userName;
+        NSIndexPath *path = [self.tableView indexPathForCell:sender];
+        User *user =[MPCHandler sharedInstance].activePeers[path.row];
+        Conversation *conversation = [[DataManager sharedInstance] conversationForPeerId:user.peerID];
+    
+        if (!conversation) {
+            conversation = [[Conversation alloc] initWithUser:user];
+        }
+        conversationDetailVC.conversation = conversation;
+    }
+
 }
-*/
+
 
 @end

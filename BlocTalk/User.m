@@ -17,6 +17,8 @@
     if (self) {
         self.peerID = peerID;
         self.userName = peerID.displayName;
+        NSLog(@"peerID Description: %@", [peerID description]);
+        self.uuid = [[NSUUID UUID] UUIDString];
         self.profileImageName = nil;
     }
     
@@ -31,6 +33,7 @@
     if (self) {
         self.peerID = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(peerID))];
         self.userName = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(userName))];
+        self.uuid = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(uuid))];
         self.profileImageName = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(profileImageName))];
     }
     
@@ -40,6 +43,7 @@
 - (void) encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.peerID forKey:NSStringFromSelector(@selector(peerID))];
     [aCoder encodeObject:self.userName forKey:NSStringFromSelector(@selector(userName))];
+    [aCoder encodeObject:self.uuid forKey:NSStringFromSelector(@selector(uuid))];
     [aCoder encodeObject:self.profileImageName forKey:NSStringFromSelector(@selector(profileImageName))];
 }
 

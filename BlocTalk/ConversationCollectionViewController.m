@@ -14,11 +14,14 @@
 #import "MPCHandler.h"
 #import "DataManager.h"
 #import "ConnectedPeersTableViewController.h"
+#import <JSQMessagesViewController/JSQMessages.h>
+#import "ConversationDetailViewController.h"
 
 @interface ConversationCollectionViewController ()
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButtonItem;
 @property (nonatomic, strong) NSMutableArray *connectedPeers;
+@property (nonatomic, strong) User *user;
 
 @end
 
@@ -36,6 +39,8 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     
     // Initialize Conversation Manager
     [DataManager sharedInstance];
+    
+    self.user = [[User alloc] initWithPeerID:[MPCHandler sharedInstance].peerID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(peerDidChangeStateWithNotification:)
@@ -69,7 +74,7 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
         if (state == MCSessionStateConnected) {
             NSLog(@"Peer connected!");
             [self.connectedPeers addObject:peerDisplayName];
-            [self sendNewMessage];
+//            [self sendNewMessage];
             //TODO: show alert to user with connnected peer's name?
         }
         else if (state == MCSessionStateNotConnected){
@@ -111,8 +116,21 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"showConnectedPeersSegue"]) {
         ConnectedPeersTableViewController *connectedPeersTblVC = [segue destinationViewController];
-        connectedPeersTblVC.connectedPeers = self.connectedPeers;
+        connectedPeersTblVC.user = self.user;
     }
+    
+    if ([segue.identifier isEqualToString:@"showConversationDetail"]) {
+        ConversationDetailViewController *conversationDetailVC = [segue destinationViewController];
+        // figure out how to generate a unique senderID that is the same across reboots
+        conversationDetailVC.senderId = self.user.userName;
+        conversationDetailVC.senderDisplayName = self.user.userName;
+        ConversationViewCell *cell = (ConversationViewCell *)sender;
+        NSIndexPath *path = [self.collectionView indexPathForCell:cell];
+        Conversation *conversation =  [DataManager sharedInstance].conversations[path.row];
+        conversationDetailVC.conversation = conversation;
+        conversationDetailVC.selectedCellRow = path.row;
+    }
+
 }
 
 
@@ -136,7 +154,7 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     NSString *userLabel = user.userName;
     NSArray *messages = [[DataManager sharedInstance].conversations[indexPath.row] messages];
     // get the last object (latest message) to show on conversations screen
-    Message *message = [messages lastObject];
+    JSQMessage *message = [messages lastObject];
     NSString *messageText = message.text;
     
     cell.userNameLabel.text = userLabel;
