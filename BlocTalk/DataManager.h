@@ -23,5 +23,6 @@
 - (NSInteger)countOfUnarchivedConversations;
 - (User *)userForPeerID:(MCPeerID *)peerID;
 - (Conversation *)conversationForPeerId:(MCPeerID *)peerID;
+- (void)saveData;
 
 @end

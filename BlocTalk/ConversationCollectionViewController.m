@@ -98,11 +98,9 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
                                        actionWithTitle:@"OK"
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction * action) {
-                                           NSLog(@"OK Button Pressed");
-                                           
                                            Conversation *conversation = [DataManager sharedInstance].conversations[indexPath.row];
                                            conversation.isArchived = YES;
-                                           NSLog(@"Conversation archived");
+                                           [[DataManager sharedInstance] saveData];
                                            [self.collectionView reloadData];
                                        }];
             UIAlertAction* cancelButton = [UIAlertAction

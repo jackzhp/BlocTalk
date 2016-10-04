@@ -135,6 +135,12 @@ static NSString * const kPeerIDKey = @"CurrentUserPeerID";
             conversation = [[Conversation alloc] initWithUser:user];
             [[DataManager sharedInstance] addConversation:conversation];
         }
+        
+        // if conversation is archived, unarchive it
+        if (conversation.isArchived) {
+            conversation.isArchived = NO;
+        }
+        
         //attach to conversation
         [[DataManager sharedInstance] addMessage:message ToConversation:conversation];
         
