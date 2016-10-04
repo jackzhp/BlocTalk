@@ -176,11 +176,21 @@ static NSString * const kPeerIDKey = @"CurrentUserPeerID";
 -(void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
     
     NSLog(@"Found peer with ID: %@", peerID);
-    [self.browser invitePeer:peerID toSession:self.session withContext:nil timeout:30.0];
+    
+    //displayName is created with [[NSUUID UUID] UUIDString]
+    
+    BOOL shouldInvite = ([self.peerID.displayName compare:peerID.displayName]==NSOrderedDescending);
+    
+    if (shouldInvite) {
+        [browser invitePeer:peerID toSession:self.session withContext:nil timeout:10.0];
+    } else {
+        NSLog(@"Not inviting");
+    }
+//    [self.browser invitePeer:peerID toSession:self.session withContext:nil timeout:30.0];
     User *user = [[DataManager sharedInstance] userForPeerID:peerID];
     // check to see if this user has connected before?
     if (!user) {
-        user = [[User alloc] initWithPeerID:peerID];
+        user = [[User alloc] initWithPeerID:peerID andUUID:[[NSUUID UUID] UUIDString]];
         [[DataManager sharedInstance] addUser:user];
     }
     

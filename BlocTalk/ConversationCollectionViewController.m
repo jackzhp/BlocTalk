@@ -40,7 +40,22 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     // Initialize Conversation Manager
     [DataManager sharedInstance];
     
-    self.user = [[User alloc] initWithPeerID:[MPCHandler sharedInstance].peerID];
+    int flag = 0;
+    // Check to see if local user is in the data manager, otherwise create
+    // TODO: try to find a better way to do this compare
+    for (User *user in [DataManager sharedInstance].users) {
+        if ([user.userName isEqualToString:[UIDevice currentDevice].name]) {
+            self.user = user;
+            flag = 1;
+        }
+    }
+    
+    // create a new local user that will persist across relaunch
+    if (!flag) {
+        self.user = [[User alloc] initWithPeerID:[MPCHandler sharedInstance].peerID andUUID:[[NSUUID UUID] UUIDString]];
+        [[DataManager sharedInstance] addUser:self.user];
+    }
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(peerDidChangeStateWithNotification:)
@@ -121,8 +136,7 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     
     if ([segue.identifier isEqualToString:@"showConversationDetail"]) {
         ConversationDetailViewController *conversationDetailVC = [segue destinationViewController];
-        // figure out how to generate a unique senderID that is the same across reboots
-        conversationDetailVC.senderId = self.user.userName;
+        conversationDetailVC.senderId = self.user.uuid;
         conversationDetailVC.senderDisplayName = self.user.userName;
         ConversationViewCell *cell = (ConversationViewCell *)sender;
         NSIndexPath *path = [self.collectionView indexPathForCell:cell];

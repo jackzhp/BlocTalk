@@ -18,6 +18,6 @@
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSString *profileImageName;
 
-- (instancetype)initWithPeerID:(MCPeerID *)peerID;
+- (instancetype)initWithPeerID:(MCPeerID *)peerID andUUID:(NSString *)uuid;
 
 @end

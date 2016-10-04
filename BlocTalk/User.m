@@ -11,14 +11,14 @@
 
 @implementation User
 
-- (instancetype)initWithPeerID:(MCPeerID *)peerID {
+- (instancetype)initWithPeerID:(MCPeerID *)peerID andUUID:(NSString *)uuid {
     self = [super init];
     
     if (self) {
         self.peerID = peerID;
         self.userName = peerID.displayName;
         NSLog(@"peerID Description: %@", [peerID description]);
-        self.uuid = [[NSUUID UUID] UUIDString];
+        self.uuid = uuid;
         self.profileImageName = nil;
     }
     
