@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarButtonItem;
 @property (nonatomic, strong) NSMutableArray *connectedPeers;
 @property (nonatomic, strong) User *user;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeftGestureRecognizer;
 
 @end
 
@@ -77,6 +78,44 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     [super viewWillAppear:animated];
     
     [self.collectionView reloadData];
+}
+
+- (IBAction)didSwipeLeft:(UISwipeGestureRecognizer *)sender {
+    NSLog(@"did swipe left");
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        
+        CGPoint p = [sender locationInView: self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+        if (indexPath != nil)
+        {
+            
+            UIAlertController * alert = [UIAlertController
+                                         alertControllerWithTitle:@"Archive"
+                                         message:@"Archive Conversation?"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* okButton = [UIAlertAction
+                                       actionWithTitle:@"OK"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action) {
+                                           NSLog(@"OK Button Pressed");
+                                           
+                                           Conversation *conversation = [DataManager sharedInstance].conversations[indexPath.row];
+                                           conversation.isArchived = YES;
+                                           NSLog(@"Conversation archived");
+                                           [self.collectionView reloadData];
+                                       }];
+            UIAlertAction* cancelButton = [UIAlertAction
+                                           actionWithTitle:@"Cancel"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:okButton];
+            [alert addAction:cancelButton];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }
 }
 
 - (void)peerDidChangeStateWithNotification:(NSNotification *)notification{
@@ -156,7 +195,7 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [DataManager sharedInstance].conversations.count;
+    return [[DataManager sharedInstance] countOfUnarchivedConversations];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

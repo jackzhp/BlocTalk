@@ -20,6 +20,7 @@
 - (void)addUser:(User *)user;
 - (void)addMessage:(JSQMessage *)message ToConversation:(Conversation *)conversation;
 
+- (NSInteger)countOfUnarchivedConversations;
 - (User *)userForPeerID:(MCPeerID *)peerID;
 - (Conversation *)conversationForPeerId:(MCPeerID *)peerID;
 

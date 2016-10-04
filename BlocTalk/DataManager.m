@@ -59,6 +59,17 @@
     return self;
 }
 
+- (NSInteger)countOfUnarchivedConversations {
+    NSInteger i = 0;
+    for (Conversation *converstaion in self.conversations) {
+        if (!converstaion.isArchived) {
+            i++;
+        }
+    }
+    
+    return i;
+}
+
 - (User *)userForPeerID:(MCPeerID *)peerID {
     for (User *user in self.users) {
         if([user.peerID isEqual:peerID]) {
