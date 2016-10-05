@@ -34,8 +34,8 @@
     
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     
-    self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
-    self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleBlueColor]];
+    self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleBlueColor]];
+    self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
     
     
     //Customize your toolbar buttons
@@ -57,6 +57,25 @@
 }
 
 - (void)processNewData:(NSNotification *)notification {
+    Conversation *conversation = notification.userInfo[@"conversation"];
+    
+    // only display alert if message is from user other than the one currently chatting with
+    if (![conversation.user.userName isEqualToString:self.conversation.user.userName] && self == self.navigationController.visibleViewController) {
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"New Message!"
+                                     message:[NSString stringWithFormat:@"New message from %@.", conversation.user.userName]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okButton = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:okButton];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
     [self finishReceivingMessageAnimated:YES];
 }
 
@@ -210,7 +229,7 @@
     if (!msg.isMediaMessage) {
         
         if ([msg.senderId isEqualToString:self.senderId]) {
-            cell.textView.textColor = [UIColor blackColor];
+            cell.textView.textColor = [UIColor whiteColor];
         }
         else {
             cell.textView.textColor = [UIColor blackColor];

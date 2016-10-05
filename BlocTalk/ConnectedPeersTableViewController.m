@@ -27,12 +27,39 @@
                                              selector:@selector(peerDidChangeStateWithNotification:)
                                                  name:@"MPCHandlerDidChangeStateNotification"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(processNewData:)
+                                                 name:@"MPCHandlerDidReceiveDataNotification"
+                                               object:nil];
 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)processNewData:(NSNotification *)notification {
+    
+    if (self == self.navigationController.visibleViewController) {
+        Conversation *conversation = notification.userInfo[@"conversation"];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"New Message!"
+                                     message:[NSString stringWithFormat:@"New message from %@.", conversation.user.userName]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okButton = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:okButton];
+        
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)peerDidChangeStateWithNotification:(NSNotification *)notification{
@@ -59,6 +86,8 @@
 
 }
 
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -68,7 +97,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSInteger numberOfRows = [MPCHandler sharedInstance].activePeers.count;
-    NSLog(@"Tableview should have %ld rows", (long)numberOfRows);
     return numberOfRows;
 }
 
@@ -137,6 +165,7 @@
     
         if (!conversation) {
             conversation = [[Conversation alloc] initWithUser:user];
+            [[DataManager sharedInstance] addConversation:conversation];
         }
         conversationDetailVC.conversation = conversation;
     }

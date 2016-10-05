@@ -146,12 +146,25 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
 }
 
 - (void)processNewData:(NSNotification *)notification {
-    // create conversation object
     
-    //add
-    
-    //reload
-    [self.collectionView reloadData];
+    if (self == self.navigationController.visibleViewController) {
+        Conversation *conversation = notification.userInfo[@"conversation"];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"New Message!"
+                                     message:[NSString stringWithFormat:@"New message from %@.", conversation.user.userName]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okButton = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:okButton];
+        
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        [self.collectionView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -173,7 +186,7 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     
     if ([segue.identifier isEqualToString:@"showConversationDetail"]) {
         ConversationDetailViewController *conversationDetailVC = [segue destinationViewController];
-        conversationDetailVC.senderId = self.user.uuid;
+        conversationDetailVC.senderId = self.user.userName;
         conversationDetailVC.senderDisplayName = self.user.userName;
         ConversationViewCell *cell = (ConversationViewCell *)sender;
         NSIndexPath *path = [self.collectionView indexPathForCell:cell];
