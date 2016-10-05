@@ -8,7 +8,6 @@
 
 #import "DataManager.h"
 #import "Conversation.h"
-#import "Message.h"
 #import "User.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import <JSQMessages.h>
@@ -99,11 +98,6 @@
 
 - (void)addUser:(User *)user {
     [_users addObject:user];
-    [self saveData];
-}
-
-- (void)addMessage:(JSQMessage *)message ToConversation:(Conversation *)conversation {
-    [conversation addMessage:message];
     [self saveData];
 }
 

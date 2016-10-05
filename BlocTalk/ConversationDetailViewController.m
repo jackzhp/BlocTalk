@@ -10,7 +10,6 @@
 #import "DataManager.h"
 #import "MPCHandler.h"
 #import "Conversation.h"
-#import "Message.h"
 #import "User.h"
 #import <JSQMessages.h>
 
@@ -88,16 +87,7 @@
 *  @return An initialized object that conforms to the `JSQMessageData` protocol. You must not return `nil` from this method.
 */
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    NSArray *messages = [[DataManager sharedInstance].conversations[self.selectedCellRow] messages];
-//
-//    Message *message = messages[indexPath.row];
-//    NSString *messageText = message.text;
-//    
-//    JSQMessage *jsqMessage = [[JSQMessage alloc] initWithSenderId:@"234532" senderDisplayName:@"Sender 1" date:[NSDate date] text:messageText];
-//    
-//    [self.jsqMessages addObject:jsqMessage];
     JSQMessage *message = self.conversation.messages[indexPath.row];
-//    NSLog(@"JSQMessage Text : %@", message.text);
     return message;
 }
 
@@ -186,7 +176,7 @@
     
     // try to send message, if successful save to conversation
     if ([[MPCHandler sharedInstance] sendMessage:message.text]) {
-        [[DataManager sharedInstance] addMessage:message ToConversation:self.conversation];
+        [self.conversation addMessage:message];
     }
     
     [self finishSendingMessageAnimated:YES];
@@ -223,7 +213,6 @@
      *  Instead, override the properties you want on `self.collectionView.collectionViewLayout` from `viewDidLoad`
      */
     
-//    JSQMessage *msg = [self.jsqMessages objectAtIndex:indexPath.item];
     JSQMessage *msg  = self.conversation.messages[indexPath.row];
     
     if (!msg.isMediaMessage) {

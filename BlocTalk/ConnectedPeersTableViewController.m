@@ -63,27 +63,8 @@
 }
 
 - (void)peerDidChangeStateWithNotification:(NSNotification *)notification{
-//    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
-//    NSString *peerDisplayName = peerID.displayName;
-//    MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
-//    
-//    NSLog(@"peer %@:%@ (%ld)",peerID,peerDisplayName,(long)state);
-//    if (state != MCSessionStateConnecting) {
-//        if (state == MCSessionStateConnected) {
-//            NSLog(@"Peer connected in TableViewController!");
-//            [self.connectedPeers addObject:peerDisplayName];
-//            //TODO: show alert to user with connnected peer's name?
-//        }
-//        else if (state == MCSessionStateNotConnected){
-//            if ([self.connectedPeers count] > 0) {
-//                NSLog(@"Peer NOT connected in TableViewController!");
-//                NSUInteger indexOfPeer = [self.connectedPeers indexOfObject: peerDisplayName];
-//                [self.connectedPeers removeObjectAtIndex:indexOfPeer];
-//            }
-//        }
-//    }
-        [self.tableView reloadData];
-
+    // reload tableView show we only show active peers
+    [self.tableView reloadData];
 }
 
 

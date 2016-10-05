@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class User, Message, MCPeerID, JSQMessage;
+@class User, MCPeerID, JSQMessage;
 
 @interface Conversation : NSObject <NSCoding>
 

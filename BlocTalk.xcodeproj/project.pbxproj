@@ -17,7 +17,6 @@
 		ABF56ABE1D9B6BF60061DE36 /* ConversationCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56ABD1D9B6BF60061DE36 /* ConversationCollectionViewController.m */; };
 		ABF56AC11D9B70E10061DE36 /* ConversationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AC01D9B70E10061DE36 /* ConversationViewCell.m */; };
 		ABF56AC81D9B7FB20061DE36 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AC71D9B7FB20061DE36 /* User.m */; };
-		ABF56ACB1D9B7FCA0061DE36 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56ACA1D9B7FCA0061DE36 /* Message.m */; };
 		ABF56ACE1D9C15650061DE36 /* MPCHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56ACD1D9C15650061DE36 /* MPCHandler.m */; };
 		ABF56AD11D9C6A700061DE36 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD01D9C6A700061DE36 /* Conversation.m */; };
 		ABF56AD41D9C6EB00061DE36 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF56AD31D9C6EB00061DE36 /* DataManager.m */; };
@@ -57,8 +56,6 @@
 		ABF56AC01D9B70E10061DE36 /* ConversationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationViewCell.m; sourceTree = "<group>"; };
 		ABF56AC61D9B7FB20061DE36 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		ABF56AC71D9B7FB20061DE36 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		ABF56AC91D9B7FCA0061DE36 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		ABF56ACA1D9B7FCA0061DE36 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		ABF56ACC1D9C15650061DE36 /* MPCHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCHandler.h; sourceTree = "<group>"; };
 		ABF56ACD1D9C15650061DE36 /* MPCHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCHandler.m; sourceTree = "<group>"; };
 		ABF56ACF1D9C6A700061DE36 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
@@ -173,8 +170,6 @@
 			children = (
 				ABF56AC61D9B7FB20061DE36 /* User.h */,
 				ABF56AC71D9B7FB20061DE36 /* User.m */,
-				ABF56AC91D9B7FCA0061DE36 /* Message.h */,
-				ABF56ACA1D9B7FCA0061DE36 /* Message.m */,
 				ABF56ACF1D9C6A700061DE36 /* Conversation.h */,
 				ABF56AD01D9C6A700061DE36 /* Conversation.m */,
 				ABF56ACC1D9C15650061DE36 /* MPCHandler.h */,
@@ -410,7 +405,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABF56ACB1D9B7FCA0061DE36 /* Message.m in Sources */,
 				ABF56AC81D9B7FB20061DE36 /* User.m in Sources */,
 				ABF56A9C1D9B59AF0061DE36 /* AppDelegate.m in Sources */,
 				ABF56ADA1DA1E5190061DE36 /* ConversationDetailViewController.m in Sources */,
@@ -480,6 +474,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -527,6 +522,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

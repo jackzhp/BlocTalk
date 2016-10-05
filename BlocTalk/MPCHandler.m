@@ -9,7 +9,6 @@
 #import "MPCHandler.h"
 #import "DataManager.h"
 #import "User.h"
-#import "Message.h"
 #import "Conversation.h"
 #import <JSQMessages.h>
 
@@ -58,7 +57,6 @@ static NSString * const kPeerIDKey = @"CurrentUserPeerID";
         [defaults setObject:displayName forKey:kDisplayNameKey];
         [defaults synchronize];
     }
-//    self.peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
     
     self.session = [[MCSession alloc] initWithPeer:self.peerID securityIdentity:nil encryptionPreference:MCEncryptionNone];
     self.session.delegate = self;
@@ -124,7 +122,6 @@ static NSString * const kPeerIDKey = @"CurrentUserPeerID";
     if (user) {
         // create new message
         JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.uuid senderDisplayName:user.userName date:timestamp text:messageText];
-//        Message *message = [[Message alloc] initWithUser:user messageText:messageText andTimestamp:timestamp];
         
         //check what conversation it belongs to
         // change this method to conversationForUser:?
@@ -142,8 +139,7 @@ static NSString * const kPeerIDKey = @"CurrentUserPeerID";
         }
         
         //attach to conversation
-        [[DataManager sharedInstance] addMessage:message ToConversation:conversation];
-        
+        [conversation addMessage:message];
         //send conversation in notification
         dict = @{@"conversation": conversation};
        
@@ -183,16 +179,16 @@ static NSString * const kPeerIDKey = @"CurrentUserPeerID";
     
     NSLog(@"Found peer with ID: %@", peerID);
     
-    //displayName is created with [[NSUUID UUID] UUIDString]
     
-    BOOL shouldInvite = ([self.peerID.displayName compare:peerID.displayName]==NSOrderedDescending);
+    // Should only invite on one side of the connection, this compares peerID display names and only sends an invite to the peer with the higher lexical ordering
+    BOOL shouldInvite = ([self.peerID.displayName compare:peerID.displayName] == NSOrderedDescending);
     
     if (shouldInvite) {
         [browser invitePeer:peerID toSession:self.session withContext:nil timeout:10.0];
     } else {
         NSLog(@"Not inviting");
     }
-//    [self.browser invitePeer:peerID toSession:self.session withContext:nil timeout:30.0];
+    
     User *user = [[DataManager sharedInstance] userForPeerID:peerID];
     // check to see if this user has connected before?
     if (!user) {

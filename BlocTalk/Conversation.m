@@ -8,8 +8,8 @@
 
 #import "Conversation.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "DataManager.h"
 #import "User.h"
-#import "Message.h"
 #import <JSQMessages.h>
 
 @interface Conversation () {
@@ -29,18 +29,19 @@
         if (!self.messages) {
         self.messages = [NSMutableArray arrayWithCapacity:1];
         }
-//        [self addMessageToConversation:message];
     }
     
     return self;
 }
 
-- (void)addMessage:(Message *)message {
+- (void)addMessage:(JSQMessage *)message {
     [_messages addObject:message];
+    [[DataManager sharedInstance] saveData];
 }
 
-- (void)removeMessage:(Message *)message {
+- (void)removeMessage:(JSQMessage *)message {
     [_messages removeObject:message];
+    [[DataManager sharedInstance] saveData];
 }
 
 #pragma mark - NSCoding

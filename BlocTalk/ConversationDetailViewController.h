@@ -12,7 +12,6 @@
 
 @interface ConversationDetailViewController : JSQMessagesViewController
 
-@property (nonatomic, assign) NSInteger selectedCellRow;
 @property (nonatomic, strong) Conversation *conversation;
 
 @end

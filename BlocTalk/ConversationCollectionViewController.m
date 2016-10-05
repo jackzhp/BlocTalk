@@ -9,7 +9,6 @@
 #import "ConversationCollectionViewController.h"
 #import "ConversationViewCell.h"
 #import "User.h"
-#import "Message.h"
 #import "Conversation.h"
 #import "MPCHandler.h"
 #import "DataManager.h"
@@ -192,7 +191,6 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
         NSIndexPath *path = [self.collectionView indexPathForCell:cell];
         Conversation *conversation =  [DataManager sharedInstance].conversations[path.row];
         conversationDetailVC.conversation = conversation;
-        conversationDetailVC.selectedCellRow = path.row;
     }
 
 }
@@ -201,7 +199,20 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    NSInteger numOfSections = 0;
+    if ([[DataManager sharedInstance] countOfUnarchivedConversations]) {
+        numOfSections = 1;
+        self.collectionView.backgroundView = nil;
+    } else {
+        UILabel *backgroundTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, self.collectionView.bounds.size.width - 150, self.collectionView.bounds.size.height)];
+        backgroundTextLabel.numberOfLines = 0;
+        backgroundTextLabel.text = @"No Active Conversations.  Hit + to select a Peer to start a conversation";
+        backgroundTextLabel.textColor = [UIColor blackColor];
+        backgroundTextLabel.textAlignment = NSTextAlignmentCenter;
+        self.collectionView.backgroundView = backgroundTextLabel;
+    }
+    
+    return numOfSections;
 }
 
 
