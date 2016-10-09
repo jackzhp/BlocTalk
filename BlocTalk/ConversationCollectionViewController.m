@@ -148,19 +148,9 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     
     if (self == self.navigationController.visibleViewController) {
         Conversation *conversation = notification.userInfo[@"conversation"];
-        UIAlertController * alert = [UIAlertController
-                                     alertControllerWithTitle:@"New Message!"
-                                     message:[NSString stringWithFormat:@"New message from %@.", conversation.user.userName]
-                                     preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:@"OK"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:okButton];
-        
-        
+        UIAlertController *alert = [conversation getAlertController];
+
         [self presentViewController:alert animated:YES completion:nil];
         [self.collectionView reloadData];
     }
@@ -224,18 +214,8 @@ static NSString * const reuseIdentifier = @"ConversationViewCell";
     ConversationViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    // why can't I string these together?
-    User *user = (User *)[[DataManager sharedInstance].conversations[indexPath.row] user];
-    NSString *userLabel = user.userName;
-    NSArray *messages = [[DataManager sharedInstance].conversations[indexPath.row] messages];
-    // get the last object (latest message) to show on conversations screen
-    JSQMessage *message = [messages lastObject];
-    NSString *messageText = message.text;
-    
-    cell.userNameLabel.text = userLabel;
-    cell.conversationTextView.text = messageText;
-    
-    
+    Conversation *conversation = [DataManager sharedInstance].conversations[indexPath.row];
+    cell.conversation = conversation;
     return cell;
 }
 

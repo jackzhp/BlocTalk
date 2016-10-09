@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class User, MCPeerID, JSQMessage;
+@class User, MCPeerID, JSQMessage, UIAlertController;
 
 @interface Conversation : NSObject <NSCoding>
 
@@ -17,9 +17,10 @@
 @property (nonatomic, assign) BOOL isArchived;
 
 - (instancetype)initWithUser:(User *)user;
-//- (instancetype)initWithPeerID:(MCPeerID *)peerID andMessage:(Message *)message;
 
 - (void)addMessage:(JSQMessage *)message;
 - (void)removeMessage:(JSQMessage *)message;
+
+- (UIAlertController *)getAlertController;
 
 @end

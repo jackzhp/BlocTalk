@@ -11,6 +11,7 @@
 #import "DataManager.h"
 #import "User.h"
 #import <JSQMessages.h>
+#import <UIKit/UIKit.h>
 
 @interface Conversation () {
     NSMutableArray *_messages;
@@ -42,6 +43,22 @@
 - (void)removeMessage:(JSQMessage *)message {
     [_messages removeObject:message];
     [[DataManager sharedInstance] saveData];
+}
+
+- (UIAlertController *)getAlertController {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"New Message!"
+                                 message:[NSString stringWithFormat:@"New message from %@.", self.user.userName]
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:okButton];
+
+    return alert;
 }
 
 #pragma mark - NSCoding

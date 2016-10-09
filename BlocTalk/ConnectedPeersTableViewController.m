@@ -44,18 +44,8 @@
     
     if (self == self.navigationController.visibleViewController) {
         Conversation *conversation = notification.userInfo[@"conversation"];
-        UIAlertController * alert = [UIAlertController
-                                     alertControllerWithTitle:@"New Message!"
-                                     message:[NSString stringWithFormat:@"New message from %@.", conversation.user.userName]
-                                     preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:@"OK"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:okButton];
-        
+        UIAlertController *alert = [conversation getAlertController];
         
         [self presentViewController:alert animated:YES completion:nil];
         [self.tableView reloadData];

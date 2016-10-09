@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Conversation;
+
 @interface ConversationViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (weak, nonatomic) IBOutlet UITextView *conversationTextView;
+@property (nonatomic, strong) Conversation *conversation;
 
 @end

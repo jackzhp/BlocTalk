@@ -7,6 +7,17 @@
 //
 
 #import "ConversationViewCell.h"
+#import "Conversation.h"
+#import "User.h"
+#import <JSQMessages.h>
+
+@interface ConversationViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UITextView *conversationTextView;
+
+@end
 
 @implementation ConversationViewCell
 
@@ -23,5 +34,17 @@
     // give a slightly rounded look to the cells
     self.layer.cornerRadius = 5;
 }
+
+
+- (void)setConversation:(Conversation *)conversation {
+    // get the last object (latest message) to show on conversations screen
+    JSQMessage *message = [conversation.messages lastObject];
+    
+    self.userNameLabel.text = conversation.user.userName;
+    self.conversationTextView.text = message.text;
+    
+}
+
+
 
 @end

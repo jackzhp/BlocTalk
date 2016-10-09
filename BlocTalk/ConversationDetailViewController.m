@@ -60,18 +60,8 @@
     
     // only display alert if message is from user other than the one currently chatting with
     if (![conversation.user.userName isEqualToString:self.conversation.user.userName] && self == self.navigationController.visibleViewController) {
-        UIAlertController * alert = [UIAlertController
-                                     alertControllerWithTitle:@"New Message!"
-                                     message:[NSString stringWithFormat:@"New message from %@.", conversation.user.userName]
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* okButton = [UIAlertAction
-                                   actionWithTitle:@"OK"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:okButton];
-        
+        UIAlertController *alert = [conversation getAlertController];
+       
         [self presentViewController:alert animated:YES completion:nil];
     }
     
